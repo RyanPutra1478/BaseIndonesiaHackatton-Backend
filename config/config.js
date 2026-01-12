@@ -24,7 +24,7 @@ module.exports = {
     dialectOptions: {
       ssl: process.env.DB_SSL === "true" ? {
         require: true,
-        rejectUnauthorized: true
+        rejectUnauthorized: false
       } : false
     }
   }
