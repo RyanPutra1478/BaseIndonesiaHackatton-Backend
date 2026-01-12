@@ -2,13 +2,12 @@ const app = require("./app");
 const { sequelize } = require("./models");
 
 const port = process.env.PORT || 3000;
-const host = "0.0.0.0";
 
 // startServer is now a non-blocking orchestrator
 function startServer() {
     // 1. First, start listening so Railway/Healthchecks are happy
-    const server = app.listen(port, host, () => {
-        console.log(`🚀 Server is "ALIVE" and listening on ${host}:${port}`);
+    const server = app.listen(port, () => {
+        console.log(`🚀 Server is "ALIVE" and listening on port ${port}`);
         console.log(`🌍 Health Check: http://localhost:${port}/health`);
     });
 

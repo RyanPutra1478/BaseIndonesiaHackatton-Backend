@@ -10,6 +10,15 @@ const path = require("path");
 
 const app = express();
 
+// Required for Railway/Cloud proxy
+app.set("trust proxy", 1);
+
+// Basic request logging
+app.use((req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.path} - ${req.ip}`);
+  next();
+});
+
 app.use(helmet());
 app.use(express.static(path.join(__dirname, "public")));
 
