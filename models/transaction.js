@@ -41,7 +41,8 @@ module.exports = (sequelize, DataTypes) => {
           "escrow_fund",
           "escrow_release",
           "escrow_refund",
-          "withdrawal_request"
+          "withdrawal_request",
+          "contract_registration"
         ),
         allowNull: false,
       },

@@ -6,9 +6,12 @@ const rateLimit = require("express-rate-limit");
 const routes = require("./routes");
 const errorHandler = require("./middlewares/errorHandler");
 
+const path = require("path");
+
 const app = express();
 
 app.use(helmet());
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json({ limit: "1mb" }));
 
@@ -20,6 +23,10 @@ app.use(
 );
 
 app.get("/health", (req, res) => res.json({ ok: true }));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.use("/api", routes);
 
