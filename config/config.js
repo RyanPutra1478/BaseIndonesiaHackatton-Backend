@@ -7,6 +7,8 @@ const config = {
   host: process.env.DB_HOST || "127.0.0.1",
   port: Number(process.env.DB_PORT) || 3306,
   dialect: "mysql",
+  // Support Railway/Heroku connection string
+  use_env_variable: process.env.DATABASE_URL ? "DATABASE_URL" : null,
   dialectOptions: {
     ssl: process.env.DB_SSL === "true" ? {
       require: true,
@@ -22,7 +24,7 @@ module.exports = {
     dialectOptions: {
       ssl: process.env.DB_SSL === "true" ? {
         require: true,
-        rejectUnauthorized: true // More strict in production
+        rejectUnauthorized: true
       } : false
     }
   }
